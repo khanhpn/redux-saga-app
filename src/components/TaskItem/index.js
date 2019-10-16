@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/styles'
 import style from './style';
-import { Button, Card, CardContent, CardActions, Typography, Box, Grid } from '@material-ui/core';
+import { Button, Card, CardContent, CardActions, Typography, Box, Grid, Icon, Fab } from '@material-ui/core';
 
 class TaskItem extends Component {
   render() {
@@ -13,8 +13,16 @@ class TaskItem extends Component {
             <Grid item md={8}><Typography component="h2">{task.title}</Typography></Grid>
             <Grid item md={4}>{status.label}</Grid>
           </Grid>
+          <p>{task.description}</p>
         </CardContent>
-        <CardActions><Button size="small"></Button></CardActions>
+        <CardActions className={classes.cardActions}>
+          <Fab color="primary" className={classes.fab} aria-label="Edit" size="small">
+            <Icon fontSize="small">edit_icon</Icon>
+          </Fab>
+          <Fab color="primary" className={classes.fab} aria-label="Delete" size="small">
+            <Icon fontSize="small">delete_icon</Icon>
+          </Fab>
+        </CardActions>
       </Card>
     )
   }

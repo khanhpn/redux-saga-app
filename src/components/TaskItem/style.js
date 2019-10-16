@@ -1,12 +1,8 @@
 const styles = () => ({
-  box: {
+  cardActions: {
     display: "flex",
-    alignItems: "center"
-  },
-  shape: {
-    padding: 20,
-    margin: 10,
-    background: "green"
+    alignItems: "center",
+    justifyContent: "flex-end"
   }
 });
 
