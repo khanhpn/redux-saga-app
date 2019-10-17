@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core'
 import styles from '../App/style'
-import { Button, Grid, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
+import { Button, Grid, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
 import { STATUSES } from '../../constants/index';
 import TaskList from '../../components/TaskList';
+import TaskForm from '../../components/TaskForm';
 
 const listTasks = [
   {
@@ -63,27 +64,14 @@ class Taskboard extends Component {
 
   renderForm() {
     let { open } = this.state;
-    let xhtml = null;
-    xhtml = (
-      <Dialog open={open} onClose={this.handleClose()} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-        <DialogContent>
-          <h1>Dialog content</h1>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={this.handleClose()} color="primary">Cancel</Button>
-          <Button onClick={this.handleClose()} color="primary">OK</Button>
-        </DialogActions>
-      </Dialog>
-    );
-    return xhtml;
+    return <TaskForm open={open} onClose={this.handleClose} />
   }
 
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.taskBoard}>
-        <Button variant="contained" color="primary" className={classes.button} onClick={this.openForm()}>
+        <Button variant="contained" color="primary" className={classes.button} onClick={() => this.openForm()}>
           <Add/> Add new task
         </Button>
         {this.renderBoard()}
