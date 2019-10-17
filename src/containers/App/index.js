@@ -3,14 +3,20 @@ import styles from './style';
 import { withStyles } from '@material-ui/core';
 import {ThemeProvider} from '@material-ui/styles';
 import Taskboard from '../Taskboard';
+import { Provider } from 'react-redux';
+import configureStore from '../../redux/configureStore';
+
+const store = configureStore();
 
 class App extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <ThemeProvider>
-        <Taskboard></Taskboard>
-      </ThemeProvider>
+      <Provider store={store}>
+        <ThemeProvider>
+          <Taskboard></Taskboard>
+        </ThemeProvider>
+      </Provider>
     );
   }
 }
