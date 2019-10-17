@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { withStyles } from '@material-ui/styles'
+import React, { Component } from 'react';
+import { withStyles } from '@material-ui/styles';
 import style from './style';
 import { Button, Card, CardContent, CardActions, Typography, Box, Grid, Icon, Fab } from '@material-ui/core';
 

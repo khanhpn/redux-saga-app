@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { withStyles } from '@material-ui/styles'
-import { Button, Grid, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@material-ui/core';
+import React, { Component } from 'react';
+import { withStyles } from '@material-ui/styles';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@material-ui/core';
 import style from './style';
 
 class TaskForm extends Component {
