@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/styles'
-import { Button, Card, CardContent, CardActions, Typography, Box, Grid } from '@material-ui/core';
+import { Box, Grid } from '@material-ui/core';
 import styles from './style';
 import TaskItem from '../TaskItem';
 

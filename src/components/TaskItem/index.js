@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/styles';
 import style from './style';
-import { Button, Card, CardContent, CardActions, Typography, Box, Grid, Icon, Fab } from '@material-ui/core';
+import { Card, CardContent, CardActions, Typography, Grid, Icon, Fab } from '@material-ui/core';
 
 class TaskItem extends Component {
   render() {
