@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core'
 import styles from '../App/style'
-import { Button, Grid } from '@material-ui/core';
+import { Button, Grid, Box } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
 import { STATUSES } from '../../constants/index';
 import TaskList from '../../components/TaskList';

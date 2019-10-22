@@ -5,6 +5,8 @@ import {ThemeProvider} from '@material-ui/styles';
 import Taskboard from '../Taskboard';
 import { Provider } from 'react-redux';
 import configureStore from '../../redux/configureStore';
+import { ToastContainer, Toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const store = configureStore();
 
@@ -13,6 +15,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <ThemeProvider>
+          <ToastContainer />
           <Taskboard></Taskboard>
         </ThemeProvider>
       </Provider>

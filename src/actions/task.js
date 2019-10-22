@@ -28,6 +28,8 @@ export const fetchListTaskSuccess = (data) => {
 export const fetchListTaskFailed = (error) => {
   return {
     type: taskConstants.FETCH_TASK_FAILED,
-    payload: error
+    payload: {
+      error
+    }
   }
 }
