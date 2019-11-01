@@ -16,15 +16,16 @@ class Taskboard extends Component {
     open: false
   };
 
-  componentDidMount() {
-    const { taskActionCreators } = this.props;
-    const { fetchListTasksRequest } = taskActionCreators;
-    fetchListTasksRequest();
-  }
+  // componentDidMount() {
+  //   const { taskActionCreators } = this.props;
+  //   const { fetchListTask } = taskActionCreators;
+  //   fetchListTask();
+  // }
 
   renderBoard() {
     const { listTasks } = this.props;
     let xhtml = null;
+    if (listTasks === undefined) return xhtml;
     xhtml = (
       <Grid container spacing={2}>
         {
@@ -51,12 +52,21 @@ class Taskboard extends Component {
     return <TaskForm open={open} onClose={this.handleClose} />
   }
 
+  loadData = () => {
+    const { taskActionCreators } = this.props;
+    const { fetchListTask } = taskActionCreators;
+    fetchListTask();
+  }
+
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.taskBoard}>
+        <Button variant="contained" color="primary" className={classes.button} onClick={() => this.loadData()}>
+          <Add/> Load data
+        </Button>
         <Button variant="contained" color="primary" className={classes.button} onClick={() => this.openForm()}>
-          <Add/> Add new task
+          <Add /> Add new task
         </Button>
         {this.renderBoard()}
         {this.renderForm()}
@@ -68,7 +78,7 @@ class Taskboard extends Component {
 Taskboard.propTypes = {
   classes: PropTypes.object,
   taskActionCreators: PropTypes.shape({
-    fetchListTasksRequest: PropTypes.func
+    fetchListTask: PropTypes.func
   }),
   listTasks: PropTypes.array
 }

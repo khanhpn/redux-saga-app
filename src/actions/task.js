@@ -1,16 +1,16 @@
 import * as taskApi from '../apis/task';
 import * as taskConstants from '../constants/task';
 
-export const fetchListTasksRequest = () => {
-  return dispatch => {
-    dispatch(fetchListTask());
-    taskApi.getList().then(data => {
-      dispatch(fetchListTaskSuccess(data));
-    }).catch(error => {
-      dispatch(fetchListTaskFailed(error));
-    })
-  }
-}
+// export const fetchListTasksRequest = () => {
+//   return dispatch => {
+//     dispatch(fetchListTask());
+//     taskApi.getList().then(data => {
+//       dispatch(fetchListTaskSuccess(data));
+//     }).catch(error => {
+//       dispatch(fetchListTaskFailed(error));
+//     })
+//   }
+// }
 
 export const fetchListTask = () => {
   return {
