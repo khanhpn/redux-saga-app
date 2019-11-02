@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as taskActions from '../../actions/task';
 import PropTypes from 'prop-types';
+import SearchBox from '../../components/SearchBox';
 
 class Taskboard extends Component {
   state = {
@@ -58,6 +59,18 @@ class Taskboard extends Component {
     fetchListTask();
   }
 
+  handleFilter = (event) => {
+    console.log(event.target.value)
+  }
+
+  renderSearchBox() {
+    let xhtml = null;
+    xhtml = (
+      <SearchBox handleChange={this.handleFilter}/>
+    )
+    return xhtml;
+  }
+
   render() {
     const { classes } = this.props;
     return (
@@ -68,6 +81,7 @@ class Taskboard extends Component {
         <Button variant="contained" color="primary" className={classes.button} onClick={() => this.openForm()}>
           <Add /> Add new task
         </Button>
+        {this.renderSearchBox()}
         {this.renderBoard()}
         {this.renderForm()}
       </div>
