@@ -32,5 +32,7 @@ export const filterTask = (keyword) => ({
 
 export const filterTaskSuccess = data => ({
   type: taskConstants.FILTER_TASK_SUCCESS,
-  payload: {data}
+  payload: {
+    data
+  }
 })

@@ -11,17 +11,18 @@ import { bindActionCreators } from 'redux';
 import * as taskActions from '../../actions/task';
 import PropTypes from 'prop-types';
 import SearchBox from '../../components/SearchBox';
+import * as modalActions from '../../actions/modal';
 
 class Taskboard extends Component {
   state = {
     open: false
   };
 
-  // componentDidMount() {
-  //   const { taskActionCreators } = this.props;
-  //   const { fetchListTask } = taskActionCreators;
-  //   fetchListTask();
-  // }
+  componentDidMount() {
+    const { taskActionCreators } = this.props;
+    const { fetchListTask } = taskActionCreators;
+    fetchListTask();
+  }
 
   renderBoard() {
     const { listTasks } = this.props;
@@ -45,7 +46,10 @@ class Taskboard extends Component {
   }
 
   openForm = () => {
-    this.setState({ open: true });
+    const { modalActionCreators } = this.props;
+    const { showModal, hideModal, changeModalTitle, changeModalContent } = modalActionCreators;
+    showModal();
+    changeModalTitle('add new task');
   }
 
   renderForm() {
@@ -60,7 +64,10 @@ class Taskboard extends Component {
   }
 
   handleFilter = (event) => {
-    console.log(event.target.value)
+    let { value } = event.target;
+    const { taskActionCreators } = this.props;
+    const { filterTask } = taskActionCreators;
+    filterTask(value);
   }
 
   renderSearchBox() {
@@ -92,7 +99,14 @@ class Taskboard extends Component {
 Taskboard.propTypes = {
   classes: PropTypes.object,
   taskActionCreators: PropTypes.shape({
-    fetchListTask: PropTypes.func
+    fetchListTask: PropTypes.func,
+    filterTask: PropTypes.func
+  }),
+  modalActionCreators: PropTypes.shape({
+    showModal: PropTypes.func,
+    hideModal: PropTypes.func,
+    changeModalTitle: PropTypes.func,
+    changeModalContent: PropTypes.func
   }),
   listTasks: PropTypes.array
 }
@@ -105,7 +119,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    taskActionCreators: bindActionCreators(taskActions, dispatch)
+    taskActionCreators: bindActionCreators(taskActions, dispatch),
+    modalActionCreators: bindActionCreators(modalActions, dispatch),
   }
 }
 
