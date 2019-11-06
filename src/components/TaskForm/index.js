@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/styles';
 import { Button, Modal, DialogActions, DialogContent, DialogTitle, TextField, Grid } from '@material-ui/core';
 import style from './style';
+import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { compose, bindActionCreators } from 'redux';
 
 class TaskForm extends Component {
   render() {
@@ -14,6 +17,9 @@ class TaskForm extends Component {
         onClose={onClose}
       >
         <form>
+          <Grid item md={12}>
+            <Field name="title" component="input" type="text"></Field>
+          </Grid>
           <Grid item md={12}>
             <Grid item md={8}>
               <TextField
@@ -44,4 +50,22 @@ class TaskForm extends Component {
   }
 }
 
-export default withStyles(style)(TaskForm);
+const mapStateToProps = state => {
+  return {}
+}
+
+const mapDispatchToProps = dispatch => {
+
+}
+
+const FORM_NAME = 'TASK_MANAGEMENT';
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withReduxForm = reduxForm({
+  form: FORM_NAME
+})
+
+export default compose(
+  withStyles(style),
+  withConnect,
+  withReduxForm
+)(TaskForm);
