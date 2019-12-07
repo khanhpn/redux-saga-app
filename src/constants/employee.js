@@ -1,0 +1,9 @@
+export const API_EMPLOYEE = "http://dummy.restapiexample.com/api/v1/";
+
+export const FETCH_EMPLOYEES = 'FETCH_EMPLOYEES';
+export const FETCH_EMPLOYEES_SUCCESS = 'FETCH_EMPLOYEES_SUCCESS';
+export const FETCH_EMPLOYEES_FAILED = 'FETCH_EMPLOYEES_FAILED';
+
+export const ADD_EMPLOYEE = 'ADD_EMPLOYEE';
+export const ADD_EMPLOYEE_SUCCESS = 'ADD_EMPLOYEE_SUCCESS';
+export const ADD_EMPLOYEE_FAILED = 'ADD_EMPLOYEE_FAILED';

@@ -1,9 +1,12 @@
 import { fork, take, call, put, delay, takeLatest, select } from 'redux-saga/effects';
 import * as taskTypes from '../constants/task';
+import * as employeeTypes from '../constants/employee';
 import { showLoading, hideLoading } from '../actions/ui';
 import { getList } from '../apis/task';
+import { getEmployees } from '../apis/employees';
 import { STATUS_CODE } from '../constants';
 import { fetchListTaskSuccess, fetchListTaskFailed, filterTaskSuccess } from '../actions/task';
+import { fetchEmployeesSuccess, fetchEmployeesFailed } from '../actions/employee';
 
 function* watchFetchListTaskAction() {
   while (true) {
@@ -22,7 +25,6 @@ function* watchFetchListTaskAction() {
 }
 
 function* watchCreateTaskAction() {
-  console.log('watching create task');
 }
 
 function* filterTaskSaga({ payload }) {
@@ -40,10 +42,21 @@ function* filterTaskSaga({ payload }) {
   yield put(filterTaskSuccess(filteredTasks));
 }
 
+function* watchFetchListEmployeeAction() {
+  const response = yield call(getEmployees);
+  const { status, data } = response;
+  if (status === STATUS_CODE.SUCCESS) {
+    yield put(fetchEmployeesSuccess(data));
+  } else {
+    yield put(fetchEmployeesFailed(data));
+  }
+}
+
 function* rootSaga() {
   yield fork(watchFetchListTaskAction);
   yield fork(watchCreateTaskAction);
   yield takeLatest(taskTypes.FILTER_TASK, filterTaskSaga)
+  yield takeLatest(employeeTypes.FETCH_EMPLOYEES, watchFetchListEmployeeAction);
 }
 
 export default rootSaga;

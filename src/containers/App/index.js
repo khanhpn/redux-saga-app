@@ -8,6 +8,9 @@ import configureStore from '../../redux/configureStore';
 import { ToastContainer, Toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import GlobalLoading from '../../components/GlobalLoading';
+import EmployeeContainer from '../Employee';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Home from '../../components/Home';
 
 const store = configureStore();
 
@@ -15,11 +18,10 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <ThemeProvider>
-          <ToastContainer />
-          <GlobalLoading />
-          <Taskboard></Taskboard>
-        </ThemeProvider>
+        <Router>
+          <Route path="/" component={Home} />
+          <Route path="/employee" component={EmployeeContainer} />
+        </Router>
       </Provider>
     );
   }
